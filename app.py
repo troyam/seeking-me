@@ -2893,7 +2893,11 @@ async def login_page(request: Request):
     if request.cookies.get("auth_user"):
         return RedirectResponse(url="/")
     
-    return templates.TemplateResponse("login.html", {"request": request})
+return templates.TemplateResponse(
+    request=request, 
+    name="login.html", 
+    context={"my_variable": "value"}
+)
 
 @app.post("/login")
 async def do_login(request: Request, username: str = Form(...), password: str = Form(...)):
